@@ -1,0 +1,45 @@
+import streamlit as st
+import pickle
+
+# Load pre-trained objects
+with open("spam/spam_model.pkl", "rb") as f:
+    model = pickle.load(f)
+
+with open("spam/vectorizer.pkl", "rb") as f:
+    vectorizer = pickle.load(f)
+
+# Streamlit app settings
+st.set_page_config(page_title="Email Spam Detector", layout="centered")
+st.title("📧 Email Spam Detection Web App")
+st.write("Use this app to check if an email or message is **Spam** or **Not Spam** using your trained model.")
+
+# Text input area for user email/message
+user_input = st.text_area("✉️ Enter email or message text:", height=200)
+
+# When user clicks "Check Spam"
+if st.button("Check Spam"):
+    if not user_input.strip():
+        st.warning("Please enter some text to classify.")
+    else:
+        try:
+            # Use your existing preprocessing and model
+            processed_text =user_input
+            vector_input = vectorizer.transform([processed_text])
+            prediction = model.predict(vector_input)
+
+            # Show result
+            if prediction == 1:
+                st.error("🚨 This message is classified as **SPAM**.")
+            else:
+                st.success("✅ This message is classified as **NOT SPAM**.")
+
+        except Exception as e:
+            st.warning(f"⚠️ Error during prediction: {e}")
+
+st.markdown("---")
+st.caption("Trained model from your existing code is used for prediction.")
+
+
+
+
+

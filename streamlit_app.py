@@ -35,7 +35,7 @@ user_input = st.text_area("✉️ Enter email or message text:", height=200)
 if st.button("Check Spam"):
     if not user_input.strip():
         st.warning("Please enter some text to classify.")
-    elif len(user_input.split()) < 10:
+    elif len(user_input.split()) < 5:
         st.warning("⚠️ Please enter at least 10 words for better prediction accuracy.")
     else:
         try:
@@ -56,6 +56,7 @@ if st.button("Check Spam"):
 st.markdown("---")
 st.caption("Trained model from your existing code is used for prediction.")
 st.caption("BY RUCHIT529 GITHUB")
+
 
 
 

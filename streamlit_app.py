@@ -55,7 +55,8 @@ if st.button("Check Spam"):
 
 st.markdown("---")
 st.caption("Trained model from your existing code is used for prediction.")
-st.caption("BY RUCHIT JAIN GITHUB")
+st.caption("BY RUCHIT529 GITHUB")
+
 
 
 

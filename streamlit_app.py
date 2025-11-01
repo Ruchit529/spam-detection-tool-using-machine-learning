@@ -45,7 +45,7 @@ if st.button("Check Spam"):
             prediction = model.predict_proba(vector_input)[0][1]
 
             # Show result
-            if prediction ==1:
+            if prediction >0.9:
                 st.error("🚨 This message is classified as **SPAM**.")
             else:
                 st.success("✅ This message is classified as **NOT SPAM**.")

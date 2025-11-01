@@ -45,7 +45,7 @@ if st.button("Check Spam"):
             prediction = model.predict(vector_input)
 
             # Show result
-            if prediction > 0.7:
+            if prediction == 1:
                 st.error("🚨 This message is classified as **SPAM**.")
             else:
                 st.success("✅ This message is classified as **NOT SPAM**.")
@@ -56,6 +56,7 @@ if st.button("Check Spam"):
 st.markdown("---")
 st.caption("Trained model from your existing code is used for prediction.")
 st.caption("BY RUCHIT529 GITHUB")
+
 
 
 

@@ -25,7 +25,7 @@ with open("vectorizer.pkl", "rb") as f:
 
 # Streamlit app settings
 st.set_page_config(page_title="Email Spam Detector", layout="centered")
-st.title("📧 Email Spam Detection By SVC Model")
+st.title("📧 Spam Detection By SVC Model")
 st.write("Use this app to check if an email or message is **Spam** or **Not Spam** using your trained model.")
 
 # Text input area for user email/message
@@ -56,6 +56,7 @@ if st.button("Check Spam"):
 st.markdown("---")
 st.caption("Trained model from your existing code is used for prediction.")
 st.caption("BY RUCHIT529 GITHUB")
+
 
 
 

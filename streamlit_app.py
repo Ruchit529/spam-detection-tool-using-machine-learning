@@ -17,10 +17,10 @@ def clean_text(text):
 
 
 # Load pre-trained objects
-with open("spam_models.pkl", "rb") as f:
+with open("spam_model.pkl", "rb") as f:
     model = pickle.load(f)
 
-with open("vectorizers.pkl", "rb") as f:
+with open("vectorizer.pkl", "rb") as f:
     vectorizer = pickle.load(f)
 
 # Streamlit app settings
@@ -53,6 +53,7 @@ if st.button("Check Spam"):
 
 st.markdown("---")
 st.caption("Trained model from your existing code is used for prediction.")
+
 
 
 

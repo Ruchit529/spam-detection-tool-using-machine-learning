@@ -25,10 +25,10 @@ if st.button("Check Spam"):
             # Use your existing preprocessing and model
             processed_text =user_input
             vector_input = vectorizer.transform([processed_text])
-            prediction = model.predict_proba(vector_input)[0][1]
+            prediction = model.predict_proba(vector_input)
 
             # Show result
-            if prediction >0.7:
+            if prediction >0.5:
                 st.error("🚨 This message is classified as **SPAM**.")
             else:
                 st.success("✅ This message is classified as **NOT SPAM**.")
@@ -38,6 +38,7 @@ if st.button("Check Spam"):
 
 st.markdown("---")
 st.caption("Trained model from your existing code is used for prediction.")
+
 
 
 

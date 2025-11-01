@@ -40,7 +40,7 @@ if st.button("Check Spam"):
             # Use your existing preprocessing and model
             processed_text =clean_text(user_input)
             vector_input = vectorizer.transform([processed_text])
-            prediction = model.predict_proba(vector_input)
+            prediction = model.predict(vector_input)
 
             # Show result
             if prediction > 0.7:
@@ -53,6 +53,7 @@ if st.button("Check Spam"):
 
 st.markdown("---")
 st.caption("Trained model from your existing code is used for prediction.")
+
 
 
 

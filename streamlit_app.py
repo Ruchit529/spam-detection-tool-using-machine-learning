@@ -1,11 +1,26 @@
 import streamlit as st
 import pickle
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import SnowballStemmer
+import string
+nltk.download('stopwords')
+
+def clean_text(text):
+
+    text=''.join([char for char in text if char not in string.punctuation])
+    words=text.split()
+    stop_words=stopwords.words("english")
+    stemmer = SnowballStemmer('english')
+    words = [stemmer.stem(word) for word in words if word.lower() not in stop_words]
+    return ' '.join(words)
+
 
 # Load pre-trained objects
-with open("spam_model.pkl", "rb") as f:
+with open("spam_models.pkl", "rb") as f:
     model = pickle.load(f)
 
-with open("vectorizer.pkl", "rb") as f:
+with open("vectorizers.pkl", "rb") as f:
     vectorizer = pickle.load(f)
 
 # Streamlit app settings
@@ -23,12 +38,12 @@ if st.button("Check Spam"):
     else:
         try:
             # Use your existing preprocessing and model
-            processed_text =user_input
+            processed_text =clean_text(user_input)
             vector_input = vectorizer.transform([processed_text])
-            prediction = model.predict_proba(vector_input)[0][1]
+            prediction = model.predict_proba(vector_input)
 
             # Show result
-            if prediction > 0.5:
+            if prediction > 0.7:
                 st.error("🚨 This message is classified as **SPAM**.")
             else:
                 st.success("✅ This message is classified as **NOT SPAM**.")
@@ -38,6 +53,7 @@ if st.button("Check Spam"):
 
 st.markdown("---")
 st.caption("Trained model from your existing code is used for prediction.")
+
 
 
 
